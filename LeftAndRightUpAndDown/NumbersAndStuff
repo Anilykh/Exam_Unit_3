@@ -1,0 +1,219 @@
+using System;
+
+public class TreeNode
+{
+    public int Value { get; set; }
+    public TreeNode Left { get; set; }
+    public TreeNode Right { get; set; }
+}
+
+public class BinaryTree
+{
+    private TreeNode root;
+
+    public BinaryTree(TreeNode rootNode)
+    {
+        root = rootNode;
+    }
+
+    public int SumOfTree(TreeNode node)
+    {
+        if (node == null)
+            return 0;
+
+        return node.Value + SumOfTree(node.Left) + SumOfTree(node.Right);
+    }
+
+    public int DeepestLevel(TreeNode node)
+    {
+        if (node == null)
+            return 0;
+
+        int leftDepth = DeepestLevel(node.Left);
+        int rightDepth = DeepestLevel(node.Right);
+
+        return Math.Max(leftDepth, rightDepth) + 1;
+    }
+
+    public int NumberOfNodes(TreeNode node)
+    {
+        if (node == null)
+            return 0;
+
+        return 1 + NumberOfNodes(node.Left) + NumberOfNodes(node.Right);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        TreeNode root = new TreeNode
+        {
+            Value = 281,
+            Right = new TreeNode
+            {
+                Value = 168,
+                Left = new TreeNode
+                {
+                    Value = 732,
+                    Left = new TreeNode
+                    {
+                        Value = 653,
+                        Left = new TreeNode
+                        {
+                            Value = 372,
+                            Right = new TreeNode
+                            {
+                                Value = 879,
+                                Right = new TreeNode
+                                {
+                                    Value = 330,
+                                    Left = new TreeNode
+                                    {
+                                        Value = 752,
+                                        Right = new TreeNode
+                                        {
+                                            Value = 328,
+                                            Right = new TreeNode
+                                            {
+                                                Value = 278,
+                                                Right = new TreeNode
+                                                {
+                                                    Value = 983,
+                                                    Left = new TreeNode
+                                                    {
+                                                        Value = 924,
+                                                        Left = new TreeNode
+                                                        {
+                                                            Value = 269,
+                                                            Left = new TreeNode
+                                                            {
+                                                                Value = 558,
+                                                                Left = new TreeNode
+                                                                {
+                                                                    Value = 571,
+                                                                    Right = new TreeNode
+                                                                    {
+                                                                        Value = 241
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    Right = new TreeNode
+                                                    {
+                                                        Value = 912,
+                                                        Right = new TreeNode
+                                                        {
+                                                            Value = 438,
+                                                            Left = new TreeNode
+                                                            {
+                                                                Value = 977,
+                                                                Right = new TreeNode
+                                                                {
+                                                                    Value = 119,
+                                                                    Right = new TreeNode
+                                                                    {
+                                                                        Value = 410,
+                                                                        Right = new TreeNode
+                                                                        {
+                                                                            Value = 97,
+                                                                            Right = new TreeNode
+                                                                            {
+                                                                                Value = 906
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            Right = new TreeNode
+                                                            {
+                                                                Value = 971,
+                                                                Right = new TreeNode
+                                                                {
+                                                                    Value = 441
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    Right = new TreeNode
+                    {
+                        Value = 364,
+                        Left = new TreeNode
+                        {
+                            Value = 131,
+                            Right = new TreeNode
+                            {
+                                Value = 125,
+                                Right = new TreeNode
+                                {
+                                    Value = 895,
+                                    Left = new TreeNode
+                                    {
+                                        Value = 910,
+                                        Right = new TreeNode
+                                        {
+                                            Value = 838,
+                                            Left = new TreeNode
+                                            {
+                                                Value = 12,
+                                                Right = new TreeNode
+                                                {
+                                                    Value = 703
+                                                }
+                                            }
+                                        }
+                                    },
+                                    Right = new TreeNode
+                                    {
+                                        Value = 86,
+                                        Right = new TreeNode
+                                        {
+                                            Value = 429,
+                                            Right = new TreeNode
+                                            {
+                                                Value = 547,
+                                                Right = new TreeNode
+                                                {
+                                                    Value = 545,
+                                                    Right = new TreeNode
+                                                    {
+                                                        Value = 267,
+                                                        Left = new TreeNode
+                                                        {
+                                                            Value = 652
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        BinaryTree binaryTree = new BinaryTree(root);
+
+        int sum = binaryTree.SumOfTree(root);
+        Console.WriteLine("Sum of the full structure: " + sum);
+
+        int deepestLevel = binaryTree.DeepestLevel(root);
+        Console.WriteLine("Deepest level of the structure: " + deepestLevel);
+
+        int numberOfNodes = binaryTree.NumberOfNodes(root);
+        Console.WriteLine("Number of nodes: " + numberOfNodes);
+    }
+}
